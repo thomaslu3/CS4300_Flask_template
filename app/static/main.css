@@ -9,7 +9,7 @@ padding: 20px 0;
 text-align:center;
 }
 body {
-padding-top: 15%;
+/* padding-top: 15%; */
 padding-bottom: 15px;
 }
 .global-search {
@@ -17,7 +17,7 @@ text-align:center;
 padding:10px;
 }
 .global-search .form-control {
-width:500px;
+width:200px;
 }
 .global-search * {
 display:inline-block;
@@ -25,6 +25,7 @@ margin-bottom:0;
 }
 }
 .topcorner{
+    visibility: hidden;
 position:absolute;
 top:2%;
 right:2%;
