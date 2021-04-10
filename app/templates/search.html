@@ -1,9 +1,9 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="/static/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/main.css">
-    <link rel="stylesheet" href="/static/home.css">
+    <link rel="stylesheet" href="/static/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <link rel="stylesheet" href="/static/styles/home.css">
 </head>
 
 <body>
@@ -31,23 +31,32 @@
         <div id=search_form>
             <form id=search_box class="form-inline global-search">
                 <div class="form-group">
-                    <input id="input" type="text" name="search" class="form-control" placeholder="Your Input">
-                    <button type="submit" class="btn btn-info"> Go! </button>
+                    <input id="input" type="text" name="search" class="form-control" placeholder="Your Input"
+                        autocomplete="off">
+                    <div id=enter_search onclick="burnToast();"> </div>
+                    <button id=search type="submit" class="btn btn-info"> </button>
+
                 </div>
 
             </form>
+        </div>
+        <div id=results_form>
+
             <form class="form-inline global-search">
                 {% if data %}
-                <h1>{{output_message}}</h1>
+                <div id=output_message>{{output_message}}</div>
                 {% for d in data %}
                 <br>
-                <p>{{d}}</p>
+                <div id=results>{{d}}</div>
                 {% endfor %}
                 {% endif %}
             </form>
+
         </div>
 
+
     </div>
+    <script src="/static/scripts/home.js"></script>
 
 </body>
 

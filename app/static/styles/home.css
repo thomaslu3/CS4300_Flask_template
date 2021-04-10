@@ -1,0 +1,139 @@
+head, body {
+  background-color: rgb(249, 218, 188);
+}
+
+#title{
+  font-size: 4.5vw;
+  color: rgb(64, 64, 64);
+  text-align: center;
+  margin-top: 1.5vw;
+}
+
+.small_title{
+  font-size: 3.5vw;
+}
+
+#toaster_images{
+  height: 45vw;
+  width: 90vw;
+  
+}
+
+#container{
+  position: relative;
+}
+
+
+#search_form, #toast, #toaster, #results_form, #enter_search, #search{
+  position: absolute;
+}
+
+#enter_search, #search{
+  transform: translate(-100%, -10%);
+}
+
+
+#results_form{
+  z-index: 15;
+  margin-left: 50%;
+  transform: translate(-53%, 0);
+  margin-top: 7vw;
+}
+
+#output_message{
+  font-size: 1.5vw;
+  color: rgb(64, 64, 64);
+  color:white;
+}
+
+#results {
+  color: white;
+  font-size: 0.8vw;
+}
+
+#search_form{
+  z-index: 10;
+}
+
+#toast{
+  margin-left: 50%;
+  transform: translate(-53%,7%);
+  width: 27vw;
+  height: 27vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-image: url("/static/images/fresh_toast.png");
+}
+
+#toaster{
+  width: 50vw;
+  height: 25vw;
+  z-index: 5;
+  background-size: contain;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0);
+  background-image: url("/static/images/toaster.png");
+  margin-left: 50%;
+  margin-top: 20vw;
+  transform: translate(-53%, 0);
+}
+
+#search_form{
+  margin-left: 50%;
+  transform: translate(-50%,0);
+  margin-top: 25vw;
+}
+
+#input{
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-size: 1.25vw;
+  background-color: rgba(0,0,0,0);
+}
+
+*:focus{
+  outline: none;
+}
+
+#search_box{
+  background-color: white;
+  border-radius: 10px;
+  border: rgb(221, 221, 221) solid 3px;
+}
+
+.btn {
+  background-color: rgba(0,0,0,0);
+  outline: none;
+  border: none;
+  width: 3vw;
+  height: 3vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/static/images/search_pic.png");
+}
+
+.btn:hover{
+  background-color: rgba(0,0,0,0);
+  background-image: url("/static/images/hover_search.png");
+}
+
+.btn:hover ~ #toaster{
+  background-color: white;
+  width: 70vw;
+}
+
+#js{
+  display: none;
+}
+
+#enter_search{
+  width: 4vw;
+  height: 4vw;
+  z-index: 100;
+}
+#enter_search:hover ~ #search{
+  background-image: url("/static/images/hover_search.png");
+}
