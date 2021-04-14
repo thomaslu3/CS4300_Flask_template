@@ -77,7 +77,7 @@ head, body {
   background-repeat: no-repeat;
   overflow: hidden;
   background-color: rgba(0,0,0,0);
-  background-image: url("/static/images/toaster.png");
+  background-image: url("/static/images/toaster_up.png");
   margin-left: 50%;
   margin-top: 20vw;
   transform: translate(-53%, 0);
