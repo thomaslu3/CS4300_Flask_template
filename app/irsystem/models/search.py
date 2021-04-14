@@ -10,9 +10,10 @@ def top_k(query, k):
                 row['name'].replace(" ", "-") + "-" + row['id']
             if query in row['name']:
                 final_data.append("Recipe Name: " + row['name'] + "\n" +
-                                  "Cook Time: " + row['minutes'] + "\n" +
+                                  "Cook Time: " + row['minutes'] + " minutes\n" +
                                   "Ingredients: " + row['ingredients'] + "\n" +
                                   "Description: " + row['description'] + "\n" +
+                                  # TODO: format nutrition properly
                                   "Nutrition: " + row['nutrition'] + "\n" +
                                   "Recipe Link: " + url)  # TODO: make url a hyperlink
     return final_data[:k]
