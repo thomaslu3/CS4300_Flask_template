@@ -1,4 +1,4 @@
-from . import *  
+from . import *
 from app.irsystem.models.helpers import *
 from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
 
@@ -8,14 +8,12 @@ net_id = "Lindsey Luo: lgl47, Thomas Lu: tlu398, Michelle Loven: ml2359, Peter M
 
 @irsystem.route('/', methods=['GET'])
 def search():
-	query = request.args.get('search')
-	if not query:
-		data = []
-		output_message = ''
-	else:
-		output_message = "Your search: " + query
-		data = range(5)
-	return render_template('search.html', name=project_name, netid=net_id, output_message=output_message, data=data)
-
-
-
+    query = request.args.get('search')
+    if not query:
+        data = []
+        output_message = ''
+    else:
+        output_message = "Your search: " + query
+        data = search.top_k(query, 5)
+        # data = range(5)
+    return render_template('search.html', name=project_name, netid=net_id, output_message=output_message, data=data)
