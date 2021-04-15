@@ -16,10 +16,14 @@ def find_closest_matches(data_dict, query):
     tokenized_q = query.split()
     # create tuples to rank every single row, where we will have (row, score)
     ranked_outputs = []
+    # represents scores for token in name, ingredients, and description
+    scoring = [3, 1, 2]
+    # the nutritional_dict will check for these keywords,
+    # and check that the nutritional information lines up with these keywords
+    # for instnace, healthy might mean a ration of 1.2 for protein to fat
+    nutritional_dict = {"healthy": 1.2, "low-sugar": 2.0, "high-protein": 5.0}
     for row in data_dict:
         score = 0
-        # represents scores for token in name, ingredients, and description
-        scoring = [3, 1, 2]
         for token in tokenized_q:
             if token in row['name']:
                 score += scoring[0]
@@ -29,6 +33,9 @@ def find_closest_matches(data_dict, query):
 
             if token in row['description']:
                 score += scoring[2]
+        # TODO: account for nutritional aspects
+            if token in nutritional_dict:
+                pass
 
         ranked_outputs.append([row, score])
 
