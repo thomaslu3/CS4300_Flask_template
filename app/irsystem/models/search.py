@@ -40,8 +40,8 @@ def find_closest_matches(data_dict, query):
         # figure out what good nutritional ratios are, figure out how to read nutrition from our database (what do the labels mean)
             if token in nutritional_dict:
                 pass
-        if score > 0:  # if we dont have anything close, we need to either have example suggestions or alternatives anyway?
-            ranked_outputs.append([row, score*importance_factor])
+         # if we dont have anything close, we need to either have example suggestions or alternatives anyway?
+        ranked_outputs.append([row, score*importance_factor])
 
     # this line sorts the outputs by the score in descending order, then returns a list of only the outputs
     return list(zip(*(sorted(ranked_outputs, key=lambda x: x[1], reverse=True))))[0]
