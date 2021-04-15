@@ -40,7 +40,7 @@ head, body {
   z-index: 15;
   margin-left: 50%;
   transform: translate(-53%, 0);
-  margin-top: 7vw;
+  margin-top: 4.5vw;
 }
 
 #output_message{
@@ -49,9 +49,26 @@ head, body {
   color:white;
 }
 
+.recipe_link{
+  text-decoration: none;
+  color: white;
+  font-size: 1vw;
+}
+
+.recipe_link:hover{
+  text-decoration: none;
+  color: rgb(64, 64, 64);
+}
+
 #results {
   color: white;
   font-size: 0.8vw;
+}
+
+#your_query{
+  font-size: 1.75vw;
+  color: white;
+  margin-bottom: 1vw;
 }
 
 #search_form{
@@ -85,8 +102,9 @@ head, body {
 
 #search_form{
   margin-left: 50%;
-  transform: translate(-50%,0);
+  transform: translate(-53%,0);
   margin-top: 25vw;
+  width: 20vw;
 }
 
 #input{
@@ -94,6 +112,7 @@ head, body {
   outline: none;
   box-shadow: none;
   font-size: 1.25vw;
+  margin-right: 4vw;
   background-color: rgba(0,0,0,0);
 }
 
@@ -133,7 +152,7 @@ head, body {
 }
 
 #enter_search{
-  width: 4vw;
+  width: 3vw;
   height: 4vw;
   z-index: 100;
 }

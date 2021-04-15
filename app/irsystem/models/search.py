@@ -20,14 +20,15 @@ def find_closest_matches(data_dict, query):
 
 
 def format_row(row):
+    orig_name = row['name']
     recipe_name = re.sub('\s+', '-', row['name'])
     url = "https://www.food.com/recipe/" + recipe_name.replace(
         " ", "-") + "-" + row['id']
-    string = str("Recipe Name: " + recipe_name + "\n" +
-                 "Cook Time: " + row['minutes'] + " minutes\n" +
-                 "Ingredients: " + row['ingredients'] + "\n" +
-                 "Description: " + row['description'] + "\n" +
+    string = str(orig_name.title() + "\n")
+                #  "Cook Time: " + row['minutes'] + " minutes\n" +
+                #  "Ingredients: " + row['ingredients'] + "\n" +
+                #  "Description: " + row['description'] + "\n" +
                  # TODO: format nutrition properly
-                 "Nutrition: " + row['nutrition'] + "\n" +
-                 "Recipe Link: " + url)  # TODO: make url a hyperlink
-    return string
+                #  "Nutrition: " + row['nutrition'] + "\n" +
+                #  "Recipe Link: " + url)  # TODO: make url a hyperlink
+    return string, url

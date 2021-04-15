@@ -35,20 +35,25 @@
                     <input id="input" type="text" name="search" class="form-control" placeholder="Your Input"
                         autocomplete="off">
                     <div id=enter_search onclick="burnToast();"> </div>
-                    <button id=search type="submit" class="btn btn-info"> </button>
+                    <button id=search form=search_box type="submit" class="btn btn-info"> </button>
 
                 </div>
 
             </form>
         </div>
-        <div id=results_form>
 
+        <div id=results_form>
             <form class="form-inline global-search">
                 {% if data %}
+                <div id=your_query>
+                    your search: {{query}}
+                </div>
                 <div id=output_message>{{output_message}}</div>
                 {% for d in data %}
                 <br>
-                <div id=results>{{d}}</div>
+                <div id=results>
+                    <a class=recipe_link href={{d[1]}}>{{d[0]}}</a>
+                </div>
                 {% endfor %}
                 {% endif %}
             </form>
