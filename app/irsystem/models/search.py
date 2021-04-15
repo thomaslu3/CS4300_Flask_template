@@ -21,8 +21,7 @@ def find_closest_matches(data_dict, query):
 
 def format_row(row):
     recipe_name = re.sub('\s+', '-', row['name'])
-    url = "https://www.food.com/recipe/" + recipe_name.replace(
-        " ", "-") + "-" + row['id']
+    url = "https://www.food.com/recipe/" + recipe_name + "-" + row['id']
     string = str("Recipe Name: " + recipe_name + "\n" +
                  "Cook Time: " + row['minutes'] + " minutes\n" +
                  "Ingredients: " + row['ingredients'] + "\n" +
