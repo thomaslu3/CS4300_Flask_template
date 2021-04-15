@@ -2,18 +2,36 @@ head, body {
   /* background-color: rgb(249, 218, 188);
 
   background-color: rgb(216, 234, 255); */
-  background-image: linear-gradient(rgb(216, 234, 255), rgb(154, 193, 238));
+  /* background-image: linear-gradient(rgb(216, 234, 255), rgb(154, 193, 238)); */
+  /* background-image: url("/static/images/bread_image1.jpg");
+  background-image: url("/static/images/very_green_wheat.jpg");
+  background-image: url("/static/images/wheat_and_blue.jpeg"); */
+  background-image: url("/static/images/blue_and_wheat.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  font-family: Optima, sans-serif;
+  font-family: Trebuchet MS, sans-serif;
 }
 
 #title{
   font-size: 4.5vw;
-  color: rgb(64, 64, 64);
+  color: rgb(228, 164, 100);
+
+  color: rgb(70, 49, 37);
   text-align: center;
   margin-top: 1.5vw;
 }
 
 .small_title{
-  font-size: 3.5vw;
+
+  font-family:Impact, fantasy;
+  font-size:4vw;
+  /* font-weight: bold; */
+  /* text-shadow: -1px 0 rgb(64, 64, 64), 0 1px rgb(64, 64, 64), 1px 0 rgb(64, 64, 64), 0 -1px rgb(64, 64, 64); */
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+
 }
 
 #toaster_images{
@@ -24,6 +42,7 @@ head, body {
 
 #container{
   position: relative;
+  height: 93vh;
 }
 
 
@@ -31,20 +50,17 @@ head, body {
   position: absolute;
 }
 
-#enter_search, #search{
-  transform: translate(-100%, -10%);
-}
 
 
 #results_form{
   z-index: 15;
   margin-left: 50%;
   transform: translate(-53%, 0);
-  margin-top: 4.5vw;
+  margin-top: 7vw;
 }
 
 #output_message{
-  font-size: 1.5vw;
+  font-size: 4vw;
   color: rgb(64, 64, 64);
   color:white;
 }
@@ -52,7 +68,7 @@ head, body {
 .recipe_link{
   text-decoration: none;
   color: white;
-  font-size: 1vw;
+  font-size: 2vw;
 }
 
 .recipe_link:hover{
@@ -66,8 +82,9 @@ head, body {
 }
 
 #your_query{
-  font-size: 1.75vw;
-  color: white;
+  color: rgb(64, 64, 64);
+  font-size: 2.2vw;
+  /* color: white; */
   margin-bottom: 1vw;
 }
 
@@ -77,18 +94,19 @@ head, body {
 
 #toast{
   margin-left: 50%;
-  transform: translate(-53%,7%);
-  width: 27vw;
-  height: 27vw;
+  transform: translate(-45%,7%);
+  width: 60vw;
+  height: 50vw;
   background-size: contain;
   background-repeat: no-repeat;
   overflow: hidden;
   background-image: url("/static/images/toast.png");
+  bottom: 7vh;
 }
 
 #toaster{
-  width: 50vw;
-  height: 25vw;
+  width: 85vw;
+  height: 40vw;
   z-index: 5;
   background-size: contain;
   background-repeat: no-repeat;
@@ -96,15 +114,15 @@ head, body {
   background-color: rgba(0,0,0,0);
   background-image: url("/static/images/toaster_up.png");
   margin-left: 50%;
-  margin-top: 20vw;
-  transform: translate(-53%, 0);
+  transform: translate(-54%, 55%);
+  bottom: 0px;
 }
 
 #search_form{
   margin-left: 50%;
   transform: translate(-53%,0);
-  margin-top: 25vw;
-  width: 20vw;
+  margin-top: 40vw;
+  width: 30vw;
 }
 
 #input{
@@ -114,6 +132,13 @@ head, body {
   font-size: 1.25vw;
   margin-right: 4vw;
   background-color: rgba(0,0,0,0);
+  height: 1.2vw;
+  padding: 0;
+  width: 45vw;
+}
+
+.form-group{
+  width: 30vw;
 }
 
 *:focus{
@@ -123,18 +148,19 @@ head, body {
 #search_box{
   background-color: white;
   border-radius: 10px;
-  border: rgb(221, 221, 221) solid 3px;
+  border: rgb(170, 170, 170) solid 3px;
 }
 
 .btn {
   background-color: rgba(0,0,0,0);
   outline: none;
   border: none;
-  width: 3vw;
-  height: 3vw;
+  width: 1.75vw;
+  height: 1.75vw;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/static/images/search_pic.png");
+  
 }
 
 .btn:hover{
@@ -144,16 +170,18 @@ head, body {
 
 .btn:hover ~ #toaster{
   background-color: white;
-  width: 70vw;
 }
 
 #js{
   display: none;
 }
 
+#search{
+  width: 11vw;
+  transform: translate(100%, -80%);
+}
+
 #enter_search{
-  width: 3vw;
-  height: 4vw;
   z-index: 100;
 }
 #enter_search:hover ~ #search{

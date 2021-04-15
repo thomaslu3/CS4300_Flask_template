@@ -14,7 +14,7 @@
     <div id=title>
         <!-- L<span class=small_title>ET'S</span> G<span class=small_title>ET</span> T<span class=small_title>HIS</span>
         B<span class=small_title>READ</span> -->
-        <span class=small_title>let's get this bread</span>
+        <span class=small_title>LET'S GET THIS BREAD</span>
     </div>
 
     <div id=container>
@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <input id="input" type="text" name="search" class="form-control" placeholder="Your Input"
                         autocomplete="off">
-                    <div id=enter_search onclick="burnToast();"> </div>
+                    <!-- <div id=enter_search onclick="burnToast();"> </div> -->
                     <button id=search form=search_box type="submit" class="btn btn-info"> </button>
 
                 </div>
@@ -46,7 +46,7 @@
             <form class="form-inline global-search">
                 {% if data %}
                 <div id=your_query>
-                    your search: {{query}}
+                    YOUR SEARCH: {{query}}
                 </div>
                 <div id=output_message>{{output_message}}</div>
                 {% for d in data %}
