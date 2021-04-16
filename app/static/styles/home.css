@@ -18,7 +18,6 @@ head, body {
 #title{
   font-size: 4.5vw;
   color: rgb(228, 164, 100);
-
   color: rgb(70, 49, 37);
   text-align: center;
   margin-top: 1.5vw;
@@ -32,12 +31,6 @@ head, body {
   /* text-shadow: -1px 0 rgb(64, 64, 64), 0 1px rgb(64, 64, 64), 1px 0 rgb(64, 64, 64), 0 -1px rgb(64, 64, 64); */
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 
-}
-
-#toaster_images{
-  height: 45vw;
-  width: 90vw;
-  
 }
 
 #container{
@@ -94,14 +87,15 @@ head, body {
 
 #toast{
   margin-left: 50%;
-  transform: translate(-45%,7%);
+  transform: translate(-45%,3%);
   width: 60vw;
   height: 50vw;
   background-size: contain;
   background-repeat: no-repeat;
   overflow: hidden;
+  margin-top: 0vh;
   background-image: url("/static/images/toast.png");
-  bottom: 7vh;
+
 }
 
 #toaster{
@@ -121,7 +115,7 @@ head, body {
 #search_form{
   margin-left: 50%;
   transform: translate(-53%,0);
-  margin-top: 40vw;
+  margin-top: 70vh;
   width: 30vw;
 }
 
