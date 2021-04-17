@@ -28,6 +28,7 @@ def find_closest_matches(data_dict, query):
         rating = 5
         for i, token in enumerate(tokenized_q):
             # since words earlier in the query are worth more, we create an inverse relationship
+            # TODO: normalize for the length of the input
             importance_factor = 1/(i + 1)
             if token in row['name']:
                 score += scoring[0]*importance_factor
