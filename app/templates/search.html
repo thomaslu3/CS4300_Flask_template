@@ -30,16 +30,11 @@
             <div class="queryText">
                 Results for {{query}}
             </div>
-            {% endif %}
             <form class=" recipeForm">
-                {% if data %}
-                <!-- <div id=your_query>
-                        YOUR SEARCH: {{query}}
-                    </div> -->
                 <div id=output_message>{{output_message}}</div>
                 {% for d in data %}
                 <br>
-                <div id=results>
+                <div>
                     <div class=recipeContainer>
                         <img class="recipeImage" />
                         <a class="recipeLink" href={{d[1]}}>{{d[0]}}</a>
@@ -59,6 +54,9 @@
 
 </html>
 
+<!-- <div id=your_query>
+                        YOUR SEARCH: {{query}}
+                    </div> -->
 <!-- <div class="topcorner">
             <p>Project Name: {{ name }}</p>
             <p>Student Name: ({{ netid }})</p>
