@@ -25,23 +25,25 @@ def find_closest_matches(data_dict, query):
     # rank words earlier in the query higher
     for row in data_dict:
         score = 0
+        rating = 5
         for i, token in enumerate(tokenized_q):
             # since words earlier in the query are worth more, we create an inverse relationship
             importance_factor = 1/(i + 1)
             if token in row['name']:
-                score += scoring[0]
+                score += scoring[0]*importance_factor
 
             if token in row['ingredients']:
-                score += scoring[1]
+                score += scoring[1]*importance_factor
 
             if token in row['description']:
-                score += scoring[2]
+                score += scoring[2]*importance_factor
         # TODO: account for nutritional aspects
         # figure out what good nutritional ratios are, figure out how to read nutrition from our database (what do the labels mean)
             if token in nutritional_dict:
                 pass
+        # TODO: find average rating for recipe, then multiply the recipe score by ((rating+.01)/5)
          # if we dont have anything close, we need to either have example suggestions or alternatives anyway?
-        ranked_outputs.append([row, score*importance_factor])
+        ranked_outputs.append([row, score*((rating+0.01)/5)])
 
     # this line sorts the outputs by the score in descending order, then returns a list of only the outputs
     return list(zip(*(sorted(ranked_outputs, key=lambda x: x[1], reverse=True))))[0]
