@@ -17,6 +17,6 @@ def search():
         data = top_k(query, 100)
         if data == "No results found":
             # TODO: insert operation for when we dont have any results found
-            return render_template('search.html', name=project_name, netid=net_id, query=query, data=data)
+            return render_template('search.html', name=project_name, netid=net_id, query=query, data="")
         else:
             return render_template('search.html', name=project_name, netid=net_id, query=query, data=data)
