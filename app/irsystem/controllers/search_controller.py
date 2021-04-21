@@ -15,4 +15,4 @@ def search():
         data = []
     else:
         data = top_k(query, 100)
-    return render_template('search.html', name=project_name, netid=net_id, query=query, data=[])
+    return render_template('search.html', name=project_name, netid=net_id, query=query, data=data)
