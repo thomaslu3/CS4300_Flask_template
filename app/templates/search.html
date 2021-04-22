@@ -25,12 +25,12 @@
             </div>
         </div>
 
-        <div class="resultsContainer">
+        <div id=results class="resultsContainer">
             {% if data %}
             <div class="queryText">
                 Results for {{query}}
             </div>
-            <form class=" recipeForm">
+            <form class="recipeForm">
                 <div id=output_message>{{output_message}}</div>
                 {% for d in data %}
                 <br>
@@ -57,70 +57,3 @@
 </body>
 
 </html>
-
-<!-- <div id=your_query>
-                        YOUR SEARCH: {{query}}
-                    </div> -->
-<!-- <div class="topcorner">
-            <p>Project Name: {{ name }}</p>
-            <p>Student Name: ({{ netid }})</p>
-        </div> -->
-
-<!-- <div id=search_form> -->
-
-<!-- <button id="searchButton" form=search_box type="submit" class="btn btn-info">I'M BREADY</button> -->
-<!-- </div> -->
-
-<!-- <div id=container>
-
-            <div id=toast>
-
-
-            </div>
-            <div id=toaster>
-
-
-            </div>
-
-
-            <div id=search_form>
-                <form id=search_box class="form-inline global-search">
-                    <div class="form-group">
-                        <input id="input" type="text" name="search" class="form-control" placeholder="Your Input"
-                            autocomplete="off"> -->
-
-
-<!-- <div id=enter_search onclick="burnToast();"> </div> -->
-
-
-<!-- <button id=search form=search_box type="submit" class="btn btn-info"> </button>
-
-                    </div>
-
-                </form>
-            </div> -->
-
-<!-- <div id=results_form>
-            <form class="form-inline global-search">
-                {% if data %}
-                <div id=your_query>
-                    YOUR SEARCH: {{query}}
-                </div>
-                <div id=output_message>{{output_message}}</div>
-                {% for d in data %}
-                <br>
-                <div id=results>
-                    <a class=recipe_link href={{d[1]}}>{{d[0]}}</a>
-                </div>
-                {% endfor %}
-                {% else %}
-                <div id=your_query>
-                    Welcome! <br>
-                    Search for your favorite breads.
-                </div>
-                {% endif %}
-            </form>
-
-        </div> -->
-
-<!-- </div> -->

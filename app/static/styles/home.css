@@ -148,22 +148,10 @@
 }
 
 head, body {
-  /* background-color: rgb(249, 218, 188);
-
-  background-color: rgb(216, 234, 255); */
-  /* background-image: linear-gradient(rgb(216, 234, 255), rgb(154, 193, 238)); */
-  /* background-image: url("/static/images/bread_image1.jpg");
-  background-image: url("/static/images/very_green_wheat.jpg");
-  background-image: url("/static/images/wheat_and_blue.jpeg"); */
-  /* background-image: url("/static/images/blue_and_wheat.jpg"); */
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
   background: #FFE9C8;
   height: 100%;
   font-family: 'Petrona', serif;
   color: #222222;
-  /* font-family: Optima, sans-serif;
-  font-family: Trebuchet MS, sans-serif; */
 }
 
 #title{
@@ -392,4 +380,9 @@ textarea {
 }
 #enter_search:hover ~ #search{
   background-image: url("/static/images/hover_search.png");
+}
+
+#results{
+  align-items: center;
+  justify-content: center;
 }
