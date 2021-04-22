@@ -16,6 +16,7 @@ def top_k(query, k):
 
 
 def find_closest_matches(data_dict, query):
+    query = query.lower()
     tokenized_q = query.split()
     # create tuples to rank every single row, where we will have (row, score)
     ranked_outputs = []
@@ -24,11 +25,11 @@ def find_closest_matches(data_dict, query):
     for row in data_dict:
         score = 0
         rating = row['rating']
-        clicks = row[' clicks']
+        clicks = 1  # dont use clicks for now, row[' clicks']
         for i, token in enumerate(tokenized_q):
             factor = (int(rating)+1)*log(int(clicks)+1)
             if token in row['name']:
-                score += scoring[0]*factor/(len(row['name'])+1)
+                score += scoring[0]*factor / (len(row['name'])+1)
 
             if token in row['ingredients']:
                 score += scoring[1]*factor / \

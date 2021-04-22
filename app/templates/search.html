@@ -42,8 +42,12 @@
                     </div>
                 </div>
                 {% endfor %}
-                {% endif %}
             </form>
+            {% else %}
+            <div class="queryText">
+                No Results Found
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="footer">
