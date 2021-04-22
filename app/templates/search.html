@@ -25,8 +25,8 @@
             </div>
         </div>
 
-        <div id=results class="resultsContainer">
-            {% if data %}
+        <div class="resultsContainer">
+            {% if data and data != "EMPTY" %}
             <div class="queryText">
                 Results for {{query}}
             </div>
@@ -44,9 +44,12 @@
                 {% endfor %}
             </form>
             {% else %}
+            {% if data == "EMPTY" %}
             <div class="queryText">
-                No Results Found
+                No Results Found for {{query}}
             </div>
+            {% endif %}
+
             {% endif %}
         </div>
     </div>
