@@ -17,5 +17,5 @@ def search():
         if top_k(query, 100) == "No results found":
             data = "EMPTY"
         else:
-            data = top_k(query, 10)
+            data = top_k(query, 12)
     return render_template('search.html', name=project_name, netid=net_id, query=query, data=data)

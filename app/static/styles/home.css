@@ -49,8 +49,10 @@
 
 #searchButton, #viewMoreButton {
   margin-top: 2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 1vw;
+  padding-bottom: 2.1vw;
   height: 3rem;
   background: #222222;
   border: none;
@@ -59,7 +61,7 @@
   color: #FFFFFF;
   font-family: "Helvetica", sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1vw;
   filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1));
 }
 
