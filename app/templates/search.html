@@ -12,24 +12,24 @@
             <img src="../static/images/logotype.svg" id="logotype" />
         </a>
         <div class="searchContainer">
-            <p class="largeText">Discover thousands of bread recipes</p>
+            <p class="largeText">Discover New Bread Recipes</p>
             <form id=searchBar class="form-inline global-search">
                 <!-- <div class="form-group"> -->
                 <input id="input" type="text" name="search" class="form-control"
-                    placeholder="Search 'banana bread no nuts no sugar' for banana bread recipes without nuts or sugar..."
+                    placeholder="Search for 'banana bread no nuts no sugar', 'multigrain sourdough', or 'naan'..."
                     autocomplete="off">
                 <!-- <div id=enter_search onclick="burnToast();"> </div> -->
                 <!-- </div> -->
             </form>
             <div class="buttonContainer">
-                <button id="searchButton" form=searchBar type="submit">I'M BREADY</button>
+                <button id="searchButton" form=searchBar type="submit">I'm Bready</button>
             </div>
         </div>
 
         <div class="resultsContainer">
             {% if data and data != "EMPTY" %}
             <div class="queryText">
-                Results for {{query}}
+                results for: {{query}}
             </div>
             <form id=results class="recipeForm">
                 <div id=output_message>{{output_message}}</div>
