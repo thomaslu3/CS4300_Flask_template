@@ -76,7 +76,7 @@ def rocchio_algorithm(query, rows):
         avg_irrel = 0
     vectorized_query = rocchio_vectorize_input(vocab, query)
     alpha = .5
-    beta = 1 - alpha
+    beta = 1.1 - alpha
     if (type(avg_rel) == list and type(avg_irrel) == list):
         new_query_vector = np.array(
             vectorized_query) + alpha*np.array(avg_rel) - beta*np.array(avg_irrel)
