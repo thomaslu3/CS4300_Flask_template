@@ -421,3 +421,12 @@ textarea {
   font-size: 2vw;
   color: transparent;
 }
+
+.upvote{
+  background-color: green;
+
+}
+
+.downvote{
+  background-color: red;
+}

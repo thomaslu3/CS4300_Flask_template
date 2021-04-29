@@ -8,13 +8,19 @@ import numpy as np
 
 def upvote_recipe(recipe_id):
     df = pd.read_csv("data_with_num.csv")
-    df.at[int(recipe_id)-1, "likes"] = 1
+    if df.at[int(recipe_id)-1, "likes"] == 1:
+        df.at[int(recipe_id)-1, "likes"] = 0
+    else:
+        df.at[int(recipe_id)-1, "likes"] = 1
     df.to_csv("data_with_num.csv", index=False)
 
 
 def downvote_recipe(recipe_id):
     df = pd.read_csv("data_with_num.csv")
-    df.at[int(recipe_id)-1, "likes"] = -1
+    if df.at[int(recipe_id)-1, "likes"] == -1:
+        df.at[int(recipe_id)-1, "likes"] = 0
+    else:
+        df.at[int(recipe_id)-1, "likes"] = -1
     df.to_csv("data_with_num.csv", index=False)
 
 
@@ -60,7 +66,6 @@ def rocchio_algorithm(query, rows):
         else:
             # don't do anything when likes = 0
             pass
-    # print("irrelevant vectors:", irrelevant_vectors)
     if len(relevant_vectors) > 0:
         avg_rel = rocchio_average_many_vectors(relevant_vectors)
     else:
@@ -73,33 +78,15 @@ def rocchio_algorithm(query, rows):
     alpha = .5
     beta = 1 - alpha
     if (type(avg_rel) == list and type(avg_irrel) == list):
-        print("CASE 1\n\n\n\n")
-        # find things that are positive
-        for i in range(len(vectorized_query)):
-            if vectorized_query[i] > 0:
-                print("GOOD WORD, score",
-                      reverse_dictionary[i], vectorized_query[i])
-        for i in range(len(vectorized_query)):
-            if avg_rel[i] > 0:
-                print("GOOD WORD, score",
-                      reverse_dictionary[i], avg_rel[i])
-        for i in range(len(vectorized_query)):
-            if avg_irrel[i] > 0:
-                print("GOOD WORD, score",
-                      reverse_dictionary[i], avg_irrel[i])
-        # end comment
         new_query_vector = np.array(
             vectorized_query) + alpha*np.array(avg_rel) - beta*np.array(avg_irrel)
     elif type(avg_rel) == list:
-        print("CASE 2\n\n\n\n")
         new_query_vector = np.array(
             vectorized_query) + alpha*np.array(avg_rel) - 0
     elif type(avg_irrel) == list:
-        print("CASE 3\n\n\n\n")
         new_query_vector = np.array(
             vectorized_query) + 0 - beta*np.array(avg_irrel)
     else:
-        print("CASE 4\n\n\n\n")
         new_query_vector = vectorized_query
     new_query_list = []
 
@@ -108,7 +95,7 @@ def rocchio_algorithm(query, rows):
             new_query_vector[i] = 0
         elif new_query_vector[i] > 0:
             new_query_list += [reverse_dictionary[i]
-                               for i in range(int(new_query_vector[i] + 1))]
+                               for j in range(int(new_query_vector[i] + 0.5))]
     new_query = " ".join(new_query_list)
 
     return new_query
