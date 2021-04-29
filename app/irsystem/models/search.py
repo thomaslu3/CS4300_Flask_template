@@ -8,7 +8,7 @@ import numpy as np
 
 def upvote_recipe(recipe_id):
     # df = pd.read_csv("data_with_num.csv")
-    # df.at[recipe_id, "likes"] = 1
+    # df.at[1, "likes"] = 1
     # df.to_csv("data_with_num.csv", index=False)
     pass
 
@@ -55,12 +55,13 @@ def rocchio_algorithm(query, rows):
     irrelevant_vectors = []
     for row in rows:
         if int(row['likes']) > 0:
-            relevant_vectors += rocchio_vectorize_input(vocab, row)
+            relevant_vectors += [rocchio_vectorize_input(vocab, row["name"])]
         elif int(row['likes']) < 0:
-            irrelevant_vectors += rocchio_vectorize_input(vocab, row)
+            irrelevant_vectors += [rocchio_vectorize_input(vocab, row["name"])]
         else:
             # don't do anything when likes = 0
             pass
+    # print("irrelevant vectors:", irrelevant_vectors)
     if len(relevant_vectors) > 0:
         avg_rel = rocchio_average_many_vectors(relevant_vectors)
     else:
@@ -70,8 +71,8 @@ def rocchio_algorithm(query, rows):
     else:
         avg_irrel = 0
     vectorized_query = rocchio_vectorize_input(vocab, query)
-    alpha = 0.5
-    beta = 1 - alpha
+    alpha = 5
+    beta = 10 - alpha
     if (type(avg_rel) == list and type(avg_irrel) == list):
         # turn into numpy objects
         new_query_vector = np.array(
@@ -88,7 +89,7 @@ def rocchio_algorithm(query, rows):
             new_query_vector[i] = 0
         elif new_query_vector[i] > 0:
             new_query_list += [reverse_dictionary[i]
-                               for i in range(new_query_vector[i])]
+                               for i in range(int(new_query_vector[i]))]
     new_query = "".join(new_query_list)
 
     return new_query
@@ -153,7 +154,7 @@ def find_closest_matches(data_dict, query, omits):
     tokenized_q = query.split()
 
     # items the user wants to omit, separated by commas
-    if omits != '':
+    if omits and omits != '':
         omit = omits.lower()
         tokenized_o = [x.strip() for x in omit.split(',')]
     else:

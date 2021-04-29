@@ -25,6 +25,7 @@ def search():
 
         if top_k(query, omits, 100) == "No results found":
             data = "EMPTY"
+            updated_query = "EMPTY"
         else:
             top_k_output = top_k(query, omits, 12)
             data = top_k_output[1]

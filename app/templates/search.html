@@ -51,6 +51,9 @@
                 {% if omits and omits != EMPTY %}
                 You've omitted: {{omits}}
                 {% endif %}
+                {% if updated_query and updated_query != EMPTY %}
+                Better query: {{updated_query}}
+                {% endif %}
             </div>
 
             <form id=results class="recipeForm">
