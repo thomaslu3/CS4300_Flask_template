@@ -17,6 +17,7 @@ def search():
     print("Upvote:", upvote, " Downvote:", downvote)
     if not query:
         data = []
+        updated_query = "EMPTY"
     else:
         if upvote:
             upvote_recipe(upvote)
