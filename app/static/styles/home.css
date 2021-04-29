@@ -89,7 +89,7 @@
   margin-top: 5rem;
   margin-left: 11.625rem;
   margin-right: 11.625rem;
-  margin-bottom: 0px;
+  margin-bottom: 3rem;
 
   font-family: 'Helvetica', sans-serif;
   font-weight: 400;
@@ -100,7 +100,7 @@
   box-sizing: border-box;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  align-items: center;
+  align-items: left;
 }
 
 .recipeForm {
@@ -183,7 +183,7 @@ head, body {
 }
 
 
-#search_form, #toast, #toaster, #results_form, #enter_search, #search{
+#search_form, #toast, #toaster, #results_form, #enter_search, #search, #omit{
   position: absolute;
 }
 
@@ -215,7 +215,7 @@ head, body {
 
 .queryText {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   font-family: 'Petrona', serif;
   font-weight: 500;
   color: #222222;
@@ -378,6 +378,7 @@ textarea {
 #search{
   width: 11vw;
   transform: translate(100%, -80%);
+  margin-bottom:20px;
 }
 
 #enter_search{
