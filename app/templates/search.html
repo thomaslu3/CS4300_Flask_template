@@ -15,14 +15,29 @@
             <p class="largeText">Discover New Bread Recipes</p>
             <form id=searchBar class="form-inline global-search">
                 <!-- <div class="form-group"> -->
+
+                {% if data and data != "EMPTY" %}
+
                 INSPIRATIONS
-                <input id="input" type="text" name="search" class="form-control"
-                    placeholder="banana bread, multigrain sourdough, naan..." autocomplete="off">
-                <!-- <div id=enter_search onclick="burnToast();"> </div> -->
-                <!-- </div> -->
+                <input id="input" type="text" name="search" class="form-control" value={{query}} autocomplete="off">
+
                 OMISSIONS, comma separated
                 <input id="input" type="text" name="omit" class="form-control" placeholder="gluten, walnuts, sugar..."
                     autocomplete="off">
+
+                {% else %}
+
+                INSPIRATIONS
+                <input id="input" type="text" name="search" class="form-control"
+                    placeholder="banana bread, multigrain sourdough, naan..." autocomplete="off">
+
+                OMISSIONS, comma separated
+                <input id="input" type="text" name="omit" class="form-control" placeholder="gluten, walnuts, sugar..."
+                    autocomplete="off">
+                {% endif %}
+                <!-- <div id=enter_search onclick="burnToast();"> </div> -->
+                <!-- </div> -->
+
             </form>
             <div class="buttonContainer">
                 <button id="searchButton" form=searchBar type="submit">I'm Bready</button>
@@ -48,9 +63,9 @@
                         <a class="recipeLink" href={{d[1]}}>
                             <div class="recipeImage">🍞
                                 <input class=likeClass id=likeButton type="submit" form=searchBar name="upvote"
-                                    value={{d[0]}} />
+                                    value={{d[2]}} />
                                 <input class=dislikeClass id=dislikeButton type="submit" form=searchBar name="downvote"
-                                    value={{d[0]}} />
+                                    value={{d[2]}} />
                             </div>
                             <div id=recipeName>{{d[0]}}</div>
                         </a>

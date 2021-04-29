@@ -12,9 +12,17 @@ net_id = "Lindsey Luo: lgl47, Thomas Lu: tlu398, Michelle Loven: ml2359, Peter M
 def search():
     query = request.args.get('search')
     omits = request.args.get('omit')
+    upvote = request.args.get('upvote')
+    downvote = request.args.get('downvote')
+    print("Upvote:", upvote, " Downvote:", downvote)
     if not query:
         data = []
     else:
+        if upvote:
+            upvote_recipe(upvote)
+        elif downvote:
+            downvote_recipe(downvote)
+
         if top_k(query, omits, 100) == "No results found":
             data = "EMPTY"
         else:

@@ -2,7 +2,15 @@ import csv
 import re
 from math import log
 import string
+import pandas as pd
 
+def upvote_recipe(recipe_id):
+    df = pd.read_csv("data_with_num.csv")
+    # df.set_value(1, "likes", 30)
+
+def downvote_recipe(recipe_id):
+    df = pd.read_csv("data_with_num.csv")
+    # df.set_value(1, "likes", 30)
 
 def top_k(query, omits, k):
     final_data = []
@@ -111,13 +119,12 @@ def find_closest_matches(data_dict, query, omits):
 
 def format_row(row):
     orig_name = row['name']
-    # recipe_id = row['num']
+    recipe_id = row['num']
     recipe_name = re.sub('\s+', '-', row['name'])
     url = "https://www.food.com/recipe/" + recipe_name.replace(
         " ", "-") + "-" + row['id']
     string = str(orig_name.title() + "\n")
-    # return string, url, recipe_id
-    return string, url
+    return string, url, recipe_id
 
 # def query_negated(negation_words, prev_word, word):
 #     negated = 1
