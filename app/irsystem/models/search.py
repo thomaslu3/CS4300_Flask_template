@@ -6,11 +6,13 @@ import pandas as pd
 
 def upvote_recipe(recipe_id):
     df = pd.read_csv("data_with_num.csv")
-    # df.set_value(1, "likes", 30)
+    df.at[recipe_id, "likes"] = 1
+    df.to_csv("data_with_num.csv", index=False)
 
 def downvote_recipe(recipe_id):
     df = pd.read_csv("data_with_num.csv")
-    # df.set_value(1, "likes", 30)
+    df.at[recipe_id, "likes"]= -1
+    df.to_csv("data_with_num.csv", index=False)
 
 def top_k(query, omits, k):
     final_data = []
@@ -22,39 +24,6 @@ def top_k(query, omits, k):
             return final_data[:k]
         else:
             return "No results found"
-
-
-def rocchio_algorithm(query, rows):
-    vocab = rocchio_vocabulary(query, rows)
-    relevant_vectors = []
-    irrelevant_vectors = []
-    for row in rows:
-        if row['likes'] > 0:
-            relevant_vectors += rocchio_vectorize_input(vocab, row)
-        elif row['likes'] < 0:
-            irrelevant_vectors += rocchio_vectorize_input(vocab, row)
-        else:
-            # don't do anything when likes = 0
-            pass
-    avg_rel = rocchio_average_many_vectors(relevant_vectors)
-    avg_irrel = rocchio_average_many_vectors(irrelevant_vectors)
-    vectorized_query = rocchio_vectorize_input(vocab, query)
-    alpha = 0.5
-    beta = 1 - alpha
-    new_query_vector = vectorized_query + alpha*avg_rel - beta*avg_irrel
-    new_query_list = []
-    reverse_dictionary = rocchio_inverse_index(vocab)
-    for i in range(len(new_query_vector)):
-        if new_query_vector[i] < 0:
-            new_query_vector[i] = 0
-        elif new_query_vector[i] > 0:
-            new_query_list += [reverse_dictionary[i]
-                               for i in range(new_query_vector[i])]
-    new_query = "".join(new_query_list)
-
-    return new_query
-
-
 # establish a vocabulary for every single word that shows up in the query and the results (for now results are just their names)
 # rocchio steps: vectorize query (do we include omissions? not yet),
 # vectorize the top k results (just the name for now, eventually figure out how to vector with description and ingredients as well)
@@ -64,15 +33,11 @@ def rocchio_algorithm(query, rows):
 # calculate new query based on rocchio algorithm: q1 = q0 + a*avg_rel - b*avg_irrel
 # output query to client so they can use it for their new search
 
-def rocchio_inverse_index(vocab_dict):
-    return []
-
 # use this function to build a set of all the vocabulary in the results and query
 
 
 def rocchio_vocabulary(query, rows):
     vocab_dict = {}
-    query = query.lower()
     tokenized_query = query.split()
     for word in tokenized_query:
         if word not in vocab_dict:
@@ -81,32 +46,15 @@ def rocchio_vocabulary(query, rows):
         for word in row['name'].split():
             if word not in vocab_dict:
                 vocab_dict[word] = 0
-    word_number_dict = {}
-    i = 0
-    for k in vocab_dict.keys():
-        word_number_dict[k] = i
-    return word_number_dict
+
+    return vocab_dict
 
 # use this function to vectorize an input
 
 
-def rocchio_vectorize_input(word_number_dict, row):
-    input_vector = [0 for i in range(len(word_number_dict))]
-    row = row.lower()
-    for word in row.split():
-        input_vector[word_number_dict[word]] += 1
-    return input_vector
-
-# use this function to average many vectors
-
-
-def rocchio_average_many_vectors(vector_list):
-    n = len(vector_list)
-    final_vector = [0 for i in range(len(vector_list[0]))]
-    for v in vector_list:
-        for i in range(len(v)):
-            final_vector[i] += v[i]/n
-    return final_vector
+# def rocchio_vectorize_input(vocab_dict, input):
+#     alph_sorted_keys = list(vocab_dict.keys()).sort(key=lambda x, x)
+#     for key in alph_sorted_keys:
 
 
 def find_closest_matches(data_dict, query, omits):
@@ -174,11 +122,12 @@ def find_closest_matches(data_dict, query, omits):
 def format_row(row):
     orig_name = row['name']
     recipe_id = row['num']
+    liked = row['likes']
     recipe_name = re.sub('\s+', '-', row['name'])
     url = "https://www.food.com/recipe/" + recipe_name.replace(
         " ", "-") + "-" + row['id']
     string = str(orig_name.title() + "\n")
-    return string, url, recipe_id
+    return string, url, recipe_id, liked
 
 # def query_negated(negation_words, prev_word, word):
 #     negated = 1

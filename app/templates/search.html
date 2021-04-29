@@ -62,10 +62,12 @@
                     <div class=recipeContainer>
                         <a class="recipeLink" href={{d[1]}}>
                             <div class="recipeImage">🍞
+                                {% if d[3] != 1 %}
                                 <input class=likeClass id=likeButton type="submit" form=searchBar name="upvote"
                                     value={{d[2]}} />
                                 <input class=dislikeClass id=dislikeButton type="submit" form=searchBar name="downvote"
                                     value={{d[2]}} />
+                                {% endif %}
                             </div>
                             <div id=recipeName>{{d[0]}}</div>
                         </a>
