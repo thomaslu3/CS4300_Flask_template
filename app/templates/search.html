@@ -19,7 +19,7 @@
                 {% if data and data != "EMPTY" %}
 
                 INSPIRATIONS
-                <input id="input" type="text" name="search" class="form-control" value={{query}} autocomplete="off">
+                <input id="input" type="text" name="search" class="form-control" value="{{query}}" autocomplete="off">
 
                 OMISSIONS, comma separated
                 <input id="input" type="text" name="omit" class="form-control" placeholder="gluten, walnuts, sugar..."
@@ -67,7 +67,7 @@
                             <div class="recipeImage">🍞
                                 {% if d[3] != 1 %}
                                 <input class=likeClass id=likeButton type="submit" form=searchBar name="upvote"
-                                    value={{d[2]}} />
+                                    value="{{d[2]}}" />
                                 <input class=dislikeClass id=dislikeButton type="submit" form=searchBar name="downvote"
                                     value={{d[2]}} />
                                 {% endif %}

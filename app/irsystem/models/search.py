@@ -8,16 +8,16 @@ import numpy as np
 
 def upvote_recipe(recipe_id):
     df = pd.read_csv("data_with_num.csv")
-    df.at[recipe_id-1, "likes"] = 1
+    df.at[int(recipe_id)-1, "likes"] = 1
     df.to_csv("data_with_num.csv", index=False)
-    # pass
+   
 
 
 def downvote_recipe(recipe_id):
-    # df = pd.read_csv("data_with_num.csv")
-    # df.at[recipe_id, "likes"]= -1
-    # df.to_csv("data_with_num.csv", index=False)
-    pass
+    df = pd.read_csv("data_with_num.csv")
+    df.at[int(recipe_id)-1, "likes"]= -1
+    df.to_csv("data_with_num.csv", index=False)
+    
 
 
 def top_k(query, omits, k):

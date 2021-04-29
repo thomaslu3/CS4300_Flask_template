@@ -19,6 +19,7 @@ def search():
         data = []
         updated_query = "EMPTY"
     else:
+        print("query:", query)
         if upvote:
             upvote_recipe(upvote)
         elif downvote:
