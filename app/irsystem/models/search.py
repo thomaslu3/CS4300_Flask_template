@@ -8,14 +8,20 @@ import numpy as np
 
 def upvote_recipe(recipe_id):
     df = pd.read_csv("data_with_num.csv")
-    df.at[int(recipe_id)-1, "likes"] = 1
+    if df.at[int(recipe_id)-1, "likes"] == 1:
+        df.at[int(recipe_id)-1, "likes"] = 0
+    else:
+        df.at[int(recipe_id)-1, "likes"] = 1
     df.to_csv("data_with_num.csv", index=False)
    
 
 
 def downvote_recipe(recipe_id):
     df = pd.read_csv("data_with_num.csv")
-    df.at[int(recipe_id)-1, "likes"]= -1
+    if df.at[int(recipe_id)-1, "likes"]== -1:
+        df.at[int(recipe_id)-1, "likes"] = 0
+    else:
+        df.at[int(recipe_id)-1, "likes"] = -1
     df.to_csv("data_with_num.csv", index=False)
     
 
