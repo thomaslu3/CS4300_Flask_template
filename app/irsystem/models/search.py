@@ -101,23 +101,6 @@ def rocchio_inverse_index(dictionary):
     return inverse_dict
 
 
-def rocchio_vectorize_input(word_number_dict, row):
-    input_vector = [0 for i in range(len(word_number_dict))]
-    row = row.lower()
-    for word in row.split():
-        input_vector[word_number_dict[word]] += 1
-    return input_vector
-
-# use this function to average many vectors
-
-
-def rocchio_average_many_vectors(vector_list):
-    n = len(vector_list)
-    final_vector = [0 for i in range(len(vector_list[0]))]
-    for v in vector_list:
-        for i in range(len(v)):
-            final_vector[i] += v[i]/n
-    return final_vector
 
 # use this function to build a set of all the vocabulary in the results and query
 
