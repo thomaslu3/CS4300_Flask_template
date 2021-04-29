@@ -80,10 +80,12 @@ def find_closest_matches(data_dict, query, omits):
 
 def format_row(row):
     orig_name = row['name']
+    # recipe_id = row['num']
     recipe_name = re.sub('\s+', '-', row['name'])
     url = "https://www.food.com/recipe/" + recipe_name.replace(
         " ", "-") + "-" + row['id']
     string = str(orig_name.title() + "\n")
+    # return string, url, recipe_id
     return string, url
 
 # def query_negated(negation_words, prev_word, word):

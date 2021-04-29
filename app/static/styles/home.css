@@ -145,11 +145,22 @@
   font-family: 'Petrona', serif;
   font-weight: 500;
   font-size: 1.5rem;
+  overflow: hidden;
+  
 }
+
 
 .recipeLink:hover {
   color: #222222;
+  /* text-decoration: underline; */
+  text-decoration: none;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recipeContainer:hover #recipeName
+{
   text-decoration: underline;
+  color: #070707;
 }
 
 head, body {
@@ -391,4 +402,22 @@ textarea {
 #results{
   align-items: center;
   justify-content: center;
+}
+
+.likeClass{
+  background-image: url("../images/like.png");
+  width: 2vw;
+  background-size: cover;
+  height: 2vw;
+  font-size: 2vw;
+  color: transparent;
+}
+
+.dislikeClass{
+  background-image: url("../images/dislike.png");
+  background-size: cover;
+  width: 2vw;
+  height: 2vw;
+  font-size: 2vw;
+  color: transparent;
 }

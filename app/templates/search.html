@@ -43,9 +43,17 @@
                 {% for d in data %}
                 <br>
                 <div>
+
                     <div class=recipeContainer>
-                        <div class="recipeImage">🍞</div>
-                        <a class="recipeLink" href={{d[1]}}>{{d[0]}}</a>
+                        <a class="recipeLink" href={{d[1]}}>
+                            <div class="recipeImage">🍞
+                                <input class=likeClass id=likeButton type="submit" form=searchBar name="upvote"
+                                    value={{d[0]}} />
+                                <input class=dislikeClass id=dislikeButton type="submit" form=searchBar name="downvote"
+                                    value={{d[0]}} />
+                            </div>
+                            <div id=recipeName>{{d[0]}}</div>
+                        </a>
                         <!-- <a class=recipe_link href={{d[1]}}>{{d[0]}}</a> -->
                     </div>
                 </div>
