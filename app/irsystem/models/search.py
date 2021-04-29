@@ -5,7 +5,7 @@ from math import log
 
 def top_k(query, k):
     final_data = []
-    with open('clean_recipes_reviews.csv', newline='') as csvfile:
+    with open('data_with_likes.csv', newline='') as csvfile:
         data_dict = csv.DictReader(csvfile)
         for row in find_closest_matches(data_dict, query):
             final_data.append(format_row(row))
@@ -25,7 +25,7 @@ def find_closest_matches(data_dict, query):
     for row in data_dict:
         score = 0
         rating = row['rating']
-        clicks = 1  # dont use clicks for now, row[' clicks']
+        clicks = 1  # dont use clicks for now, row['clicks']
         for i, token in enumerate(tokenized_q):
             factor = (int(rating)+1)*log(int(clicks)+1)
             if token in row['name']:
