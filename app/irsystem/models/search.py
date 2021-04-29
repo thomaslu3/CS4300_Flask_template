@@ -6,14 +6,16 @@ import pandas as pd
 import numpy as np
 
 def upvote_recipe(recipe_id):
-    df = pd.read_csv("data_with_num.csv")
-    df.at[recipe_id, "likes"] = 1
-    df.to_csv("data_with_num.csv", index=False)
+    # df = pd.read_csv("data_with_num.csv")
+    # df.at[recipe_id, "likes"] = 1
+    # df.to_csv("data_with_num.csv", index=False)
+    pass
 
 def downvote_recipe(recipe_id):
-    df = pd.read_csv("data_with_num.csv")
-    df.at[recipe_id, "likes"]= -1
-    df.to_csv("data_with_num.csv", index=False)
+    # df = pd.read_csv("data_with_num.csv")
+    # df.at[recipe_id, "likes"]= -1
+    # df.to_csv("data_with_num.csv", index=False)
+    pass
 
 def top_k(query, omits, k):
     final_data = []
@@ -40,7 +42,7 @@ def top_k(query, omits, k):
 # what do we do with 0-like queries? Leave them out for now for rocchio calculation
 # calculate new query based on rocchio algorithm: q1 = q0 + a*avg_rel - b*avg_irrel
 # output query to client so they can use it for their new search
-
+#adding comment
 """
 
 
@@ -66,7 +68,7 @@ def rocchio_algorithm(query, rows):
         avg_irrel = 0
     vectorized_query = rocchio_vectorize_input(vocab, query)
     alpha = 0.5
-    beta = 1 - alpha
+    beta = 1 - alpha 
     if (type(avg_rel) == list and type(avg_irrel) == list):
         # turn into numpy objects
         new_query_vector = np.array(
