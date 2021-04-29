@@ -6,7 +6,7 @@ import string
 
 def top_k(query, omits, k):
     final_data = []
-    with open('data_with_id.csv', newline='') as csvfile:
+    with open('data_with_num.csv', newline='') as csvfile:
         data_dict = csv.DictReader(csvfile)
         for row in find_closest_matches(data_dict, query, omits):
             final_data.append(format_row(row))
