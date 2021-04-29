@@ -2,18 +2,35 @@ import csv
 import re
 from math import log
 import string
+import numpy as np
 
 
 def top_k(query, omits, k):
     final_data = []
     with open('data_with_num.csv', newline='') as csvfile:
         data_dict = csv.DictReader(csvfile)
+        rows = []
         for row in find_closest_matches(data_dict, query, omits):
+            rows.append(row)
             final_data.append(format_row(row))
         if len(final_data) > 0:
-            return final_data[:k]
+            rocchio_query = rocchio_algorithm(query, rows)
+            return [rocchio_query, final_data[:k]]
         else:
             return "No results found"
+
+
+"""
+[rocchio_algorithm] does the following:
+# establish a vocabulary for every single word that shows up in the query and the results (for now results are just their names)
+# rocchio steps: vectorize query (do we include omissions? not yet),
+# vectorize the top k results (just the name for now, eventually figure out how to vector with description and ingredients as well)
+# now find the average vector for relevant docs (those with > 0 likes)
+# find average vector for irrelevant docs (those with < 0 likes)
+# what do we do with 0-like queries? Leave them out for now for rocchio calculation
+# calculate new query based on rocchio algorithm: q1 = q0 + a*avg_rel - b*avg_irrel
+# output query to client so they can use it for their new search
+"""
 
 
 def rocchio_algorithm(query, rows):
@@ -21,19 +38,33 @@ def rocchio_algorithm(query, rows):
     relevant_vectors = []
     irrelevant_vectors = []
     for row in rows:
-        if row['likes'] > 0:
+        if int(row['likes']) > 0:
             relevant_vectors += rocchio_vectorize_input(vocab, row)
-        elif row['likes'] < 0:
+        elif int(row['likes']) < 0:
             irrelevant_vectors += rocchio_vectorize_input(vocab, row)
         else:
             # don't do anything when likes = 0
             pass
-    avg_rel = rocchio_average_many_vectors(relevant_vectors)
-    avg_irrel = rocchio_average_many_vectors(irrelevant_vectors)
+    if len(relevant_vectors) > 0:
+        avg_rel = rocchio_average_many_vectors(relevant_vectors)
+    else:
+        avg_rel = 0
+    if len(irrelevant_vectors) > 0:
+        avg_irrel = rocchio_average_many_vectors(irrelevant_vectors)
+    else:
+        avg_irrel = 0
     vectorized_query = rocchio_vectorize_input(vocab, query)
     alpha = 0.5
     beta = 1 - alpha
-    new_query_vector = vectorized_query + alpha*avg_rel - beta*avg_irrel
+    if (type(avg_rel) == list and type(avg_irrel) == list):
+        # turn into numpy objects
+        new_query_vector = np.array(
+            vectorized_query) + alpha*np.array(avg_rel) - beta*np.array(avg_irrel)
+    elif type(avg_rel) == list:
+        new_query_vector = np.array(
+            vectorized_query) + alpha*np.array(avg_rel) - 0
+    else:
+        new_query_vector = vectorized_query
     new_query_list = []
     reverse_dictionary = rocchio_inverse_index(vocab)
     for i in range(len(new_query_vector)):
@@ -47,17 +78,12 @@ def rocchio_algorithm(query, rows):
     return new_query
 
 
-# establish a vocabulary for every single word that shows up in the query and the results (for now results are just their names)
-# rocchio steps: vectorize query (do we include omissions? not yet),
-# vectorize the top k results (just the name for now, eventually figure out how to vector with description and ingredients as well)
-# now find the average vector for relevant docs (those with > 0 likes)
-# find average vector for irrelevant docs (those with < 0 likes)
-# what do we do with 0-like queries? Leave them out for now for rocchio calculation
-# calculate new query based on rocchio algorithm: q1 = q0 + a*avg_rel - b*avg_irrel
-# output query to client so they can use it for their new search
+def rocchio_inverse_index(dictionary):
+    inverse_dict = {}
+    for key in dictionary:
+        inverse_dict[dictionary[key]] = key
+    return inverse_dict
 
-def rocchio_inverse_index(vocab_dict):
-    return []
 
 # use this function to build a set of all the vocabulary in the results and query
 
@@ -77,6 +103,7 @@ def rocchio_vocabulary(query, rows):
     i = 0
     for k in vocab_dict.keys():
         word_number_dict[k] = i
+        i += 1
     return word_number_dict
 
 # use this function to vectorize an input
