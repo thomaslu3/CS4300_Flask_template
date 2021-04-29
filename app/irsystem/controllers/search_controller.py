@@ -30,5 +30,8 @@ def search():
         else:
             top_k_output = top_k(query, omits, 12)
             data = top_k_output[1]
-            updated_query = top_k_output[0]
+            if top_k_output[0] != []:
+                updated_query = top_k_output[0]
+            else:
+                updated_query = "EMPTY"
     return render_template('search.html', name=project_name, netid=net_id, query=query, omits=omits, data=data, updated_query=updated_query)
