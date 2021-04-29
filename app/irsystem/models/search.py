@@ -14,6 +14,37 @@ def top_k(query, omits, k):
             return final_data[:k]
         else:
             return "No results found"
+# establish a vocabulary for every single word that shows up in the query and the results (for now results are just their names)
+# rocchio steps: vectorize query (do we include omissions? not yet),
+# vectorize the top k results (just the name for now, eventually figure out how to vector with description and ingredients as well)
+# now find the average vector for relevant docs (those with > 0 likes)
+# find average vector for irrelevant docs (those with < 0 likes)
+# what do we do with 0-like queries? Leave them out for now for rocchio calculation
+# calculate new query based on rocchio algorithm: q1 = q0 + a*avg_rel - b*avg_irrel
+# output query to client so they can use it for their new search
+
+# use this function to build a set of all the vocabulary in the results and query
+
+
+def rocchio_vocabulary(query, rows):
+    vocab_dict = {}
+    tokenized_query = query.split()
+    for word in tokenized_query:
+        if word not in vocab_dict:
+            vocab_dict[word] = 0
+    for row in rows:
+        for words in row['name'].split():
+            if word not in vocab_dict:
+                vocab_dict[word] = 0
+
+    return vocab_dict
+
+# use this function to vectorize an input
+
+
+# def rocchio_vectorize_input(vocab_dict, input):
+#     alph_sorted_keys = list(vocab_dict.keys()).sort(key=lambda x, x)
+#     for key in alph_sorted_keys:
 
 
 def find_closest_matches(data_dict, query, omits):
