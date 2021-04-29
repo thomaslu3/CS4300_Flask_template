@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <link rel="stylesheet" href="/static/styles/home.css">
+</head>
+
+<body>
+    <div class="layout">
+        <a href="/">
+            <img src="../static/images/logotype.svg" id="logotype" />
+        </a>
+        <div class="searchContainer">
+            <p class="largeText">Discover thousands of bread recipes</p>
+            <form id=searchBar class="form-inline global-search">
+                <!-- <div class="form-group"> -->
+                <input id="input" type="text" name="search" class="form-control"
+                    placeholder="Search 'banana bread no nuts no sugar' for banana bread recipes without nuts or sugar..."
+                    autocomplete="off">
+                <!-- <div id=enter_search onclick="burnToast();"> </div> -->
+                <!-- </div> -->
+            </form>
+            <div class="buttonContainer">
+                <button id="searchButton" form=searchBar type="submit">I'M BREADY</button>
+            </div>
+        </div>
+
+        <div class="resultsContainer">
+            {% if data and data != "EMPTY" %}
+            <div class="queryText">
+                Results for {{query}}
+            </div>
+            <form id=results class="recipeForm">
+                <div id=output_message>{{output_message}}</div>
+                {% for d in data %}
+                <br>
+                <div>
+                    <div class=recipeContainer>
+                        <img class="recipeImage" />
+                        <a class="recipeLink" href={{d[1]}}>{{d[0]}}</a>
+                        <!-- <a class=recipe_link href={{d[1]}}>{{d[0]}}</a> -->
+                    </div>
+                </div>
+                {% endfor %}
+            </form>
+            {% else %}
+            {% if data == "EMPTY" %}
+            <div class="queryText">
+                No Results Found for {{query}}
+            </div>
+            {% endif %}
+
+            {% endif %}
+        </div>
+    </div>
+    <div class="footer">
+        🍞 Baked by Lindsey Luo, Michelle Loven, Peter Munn, and Thomas Lu 🥖
+    </div>
+    <script src="/static/scripts/home.js"></script>
+</body>
+
+</html>

@@ -12,32 +12,39 @@
             <img src="../static/images/logotype.svg" id="logotype" />
         </a>
         <div class="searchContainer">
-            <p class="largeText">Discover thousands of bread recipes</p>
+            <p class="largeText">Discover New Bread Recipes</p>
             <form id=searchBar class="form-inline global-search">
                 <!-- <div class="form-group"> -->
+                INSPIRATIONS
                 <input id="input" type="text" name="search" class="form-control"
-                    placeholder="Search 'banana bread no nuts no sugar' for banana bread recipes without nuts or sugar..."
-                    autocomplete="off">
+                    placeholder="banana bread, multigrain sourdough, naan..." autocomplete="off">
                 <!-- <div id=enter_search onclick="burnToast();"> </div> -->
                 <!-- </div> -->
+                OMISSIONS, comma separated
+                <input id="input" type="text" name="omit" class="form-control" placeholder="gluten, walnuts, sugar..."
+                    autocomplete="off">
             </form>
             <div class="buttonContainer">
-                <button id="searchButton" form=searchBar type="submit">I'M BREADY</button>
+                <button id="searchButton" form=searchBar type="submit">I'm Bready</button>
             </div>
         </div>
 
         <div class="resultsContainer">
             {% if data and data != "EMPTY" %}
             <div class="queryText">
-                Results for {{query}}
+                You looked for: {{query}} <br>
+                {% if omits and omits != EMPTY %}
+                You've omitted: {{omits}}
+                {% endif %}
             </div>
+
             <form id=results class="recipeForm">
                 <div id=output_message>{{output_message}}</div>
                 {% for d in data %}
                 <br>
                 <div>
                     <div class=recipeContainer>
-                        <img class="recipeImage" />
+                        <div class="recipeImage">🍞</div>
                         <a class="recipeLink" href={{d[1]}}>{{d[0]}}</a>
                         <!-- <a class=recipe_link href={{d[1]}}>{{d[0]}}</a> -->
                     </div>
