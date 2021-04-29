@@ -71,8 +71,8 @@ def rocchio_algorithm(query, rows):
     else:
         avg_irrel = 0
     vectorized_query = rocchio_vectorize_input(vocab, query)
-    alpha = 5
-    beta = 10 - alpha
+    alpha = .5
+    beta = 1 - alpha
     if (type(avg_rel) == list and type(avg_irrel) == list):
         # turn into numpy objects
         new_query_vector = np.array(
@@ -89,8 +89,8 @@ def rocchio_algorithm(query, rows):
             new_query_vector[i] = 0
         elif new_query_vector[i] > 0:
             new_query_list += [reverse_dictionary[i]
-                               for i in range(int(new_query_vector[i]))]
-    new_query = "".join(new_query_list)
+                               for i in range(int(new_query_vector[i] + 1))]
+    new_query = " ".join(new_query_list)
 
     return new_query
 
@@ -100,7 +100,6 @@ def rocchio_inverse_index(dictionary):
     for key in dictionary:
         inverse_dict[dictionary[key]] = key
     return inverse_dict
-
 
 
 # use this function to build a set of all the vocabulary in the results and query
