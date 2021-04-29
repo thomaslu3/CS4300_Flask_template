@@ -423,10 +423,10 @@ textarea {
 }
 
 .upvote{
-  background-color: green;
+  background-color: rgb(9, 156, 9);
 
 }
 
 .downvote{
-  background-color: red;
+  background-color: rgb(235, 67, 67);
 }
