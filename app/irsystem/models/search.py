@@ -126,9 +126,23 @@ def rocchio_vocabulary(query, rows):
 # use this function to vectorize an input
 
 
-# def rocchio_vectorize_input(vocab_dict, input):
-#     alph_sorted_keys = list(vocab_dict.keys()).sort(key=lambda x, x)
-#     for key in alph_sorted_keys:
+def rocchio_vectorize_input(word_number_dict, row):
+    input_vector = [0 for i in range(len(word_number_dict))]
+    row = row.lower()
+    for word in row.split():
+        input_vector[word_number_dict[word]] += 1
+    return input_vector
+
+# use this function to average many vectors
+
+
+def rocchio_average_many_vectors(vector_list):
+    n = len(vector_list)
+    final_vector = [0 for i in range(len(vector_list[0]))]
+    for v in vector_list:
+        for i in range(len(v)):
+            final_vector[i] += v[i]/n
+    return final_vector
 
 
 def find_closest_matches(data_dict, query, omits):
