@@ -3,11 +3,15 @@ import urllib.request
 import json
 import re
 import codecs
+from urllib.request import Request, urlopen
 
 
 def getImageURL(siteURL):
+    req = Request(siteURL, headers={'User-Agent': 'Mozilla/5.0'})
     try:
-        page = urllib.request.urlopen(siteURL)
+        page = urlopen(req).read()
+
+        # page = urllib.request.urlopen(siteURL)
         # page = urllib.request.urlopen(siteURL).read().decode('utf-8')
         soup = BSHTML(page, 'html.parser')
         # page_text = str(soup.prettify())
@@ -25,5 +29,5 @@ def getImageURL(siteURL):
         else:
             return "../static/images/recipe-placeholder-image.svg"
     except:
-        print("Failed to fetch images.")
+        print("Failed to fetch image.")
         return "../static/images/recipe-placeholder-image.svg"
