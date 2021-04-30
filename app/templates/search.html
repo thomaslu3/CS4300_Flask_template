@@ -49,7 +49,7 @@
             <div class="queryText">
                 You looked for: {{query}} <br>
                 {% if omits and omits != EMPTY %}
-                You've omitted: {{omits}}
+                You've omitted: {{omits}} <br>
                 {% endif %}
                 {% if updated_query and updated_query != EMPTY %}
                 Better query: {{updated_query}}
@@ -58,39 +58,40 @@
 
             <form id=results class="recipeForm">
                 <div id=output_message>{{output_message}}</div>
-                {% for d in data %}
+                {% for i in range(0, dlen) %}
                 <br>
                 <div>
 
                     <div class=recipeContainer>
-                        <a class="recipeLink" href={{d[1]}}>
-                            <div class="recipeImage">🍞
-                                {% if d[3] == '0' %}
+                        <a class="recipeLink" href={{data[i][1]}}>
+                            <div class="recipeImage"
+                                style="background-image: url({{data_image_urls[i]}}); background-size: cover;">
+                                {% if data[i][3] == '0' %}
                                 <input class="likeClass no_vote" id=likeButton type="submit" form=searchBar
-                                    name="upvote" value={{d[2]}} />
+                                    name="upvote" value={{data[i][2]}} />
                                 <input class=dislikeClass id=dislikeButton type="submit" form=searchBar name="downvote"
-                                    value={{d[2]}} />
+                                    value={{data[i][2]}} />
                                 {% endif %}
 
 
-                                {% if d[3] == '1' %}
+                                {% if data[i][3] == '1' %}
                                 <input class="likeClass upvote" id=likeButton type="submit" form=searchBar name="upvote"
-                                    value={{d[2]}} />
+                                    value={{data[i][2]}} />
                                 <input class=dislikeClass id=dislikeButton type="submit" form=searchBar name="downvote"
-                                    value={{d[2]}} />
+                                    value={{data[i][2]}} />
                                 {% endif %}
 
 
-                                {% if d[3] == '-1' %}
+                                {% if data[i][3] == '-1' %}
                                 <input class="likeClass" id=likeButton type="submit" form=searchBar name="upvote"
-                                    value={{d[2]}} />
+                                    value={{data[i][2]}} />
                                 <input class="dislikeClass downvote" id=dislikeButton type="submit" form=searchBar
-                                    name="downvote" value={{d[2]}} />
+                                    name="downvote" value={{data[i][2]}} />
                                 {% endif %}
                             </div>
-                            <div id=recipeName>{{d[0]}}</div>
+                            <div id=recipeName>{{data[i][0]}}</div>
                         </a>
-                        <!-- <a class=recipe_link href={{d[1]}}>{{d[0]}}</a> -->
+                        <!-- <a class=recipe_link href={{data[i][1]}}>{{data[i][0]}}</a> -->
                     </div>
                 </div>
                 {% endfor %}

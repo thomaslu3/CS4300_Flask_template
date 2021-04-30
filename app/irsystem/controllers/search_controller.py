@@ -2,6 +2,7 @@ from . import *
 from app.irsystem.models.helpers import *
 from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
 from app.irsystem.models.search import *
+from app.irsystem.models.imagescraper import *
 
 
 project_name = "Let's Get This Bread"
@@ -35,4 +36,10 @@ def search():
                 updated_query = top_k_output[0]
             else:
                 updated_query = "EMPTY"
-    return render_template('search.html', name=project_name, netid=net_id, query=query, omits=omits, data=data, updated_query=updated_query)
+    data_image_urls = []
+    if not data == "EMPTY":
+        for d in data:
+            data_image_urls.append(getImageURL(d[1]))
+    dlen = len(data)
+
+    return render_template('search.html', name=project_name, netid=net_id, query=query, omits=omits, data=data, updated_query=updated_query, data_image_urls=data_image_urls, dlen=dlen)
