@@ -3,10 +3,14 @@ import urllib.request
 import json
 import re
 import codecs
+from urllib.request import Request, urlopen
 
 
 def getImageURL(siteURL):
-    page = urllib.request.urlopen(siteURL)
+    req = Request('http://www.cmegroup.com/trading/products/#sortField=oi&sortAsc=false&venues=3&page=1&cleared=1&group=1', headers={'User-Agent': 'Mozilla/5.0'})
+    page = urlopen(siteURL).read()
+
+    # page = urllib.request.urlopen(siteURL)
     # page = urllib.request.urlopen(siteURL).read().decode('utf-8')
     soup = BSHTML(page, 'html.parser')
     # page_text = str(soup.prettify())
