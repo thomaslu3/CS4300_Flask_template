@@ -176,7 +176,6 @@ def find_closest_matches(data_dict, query, omits):
         clicks = 1  # dont use clicks for now, row['clicks']
         bad = 0
         for i, token in enumerate(tokenized_q):
-            print("ROW\n", row, "\n\n")
             factor = (int(rating)+1)*log(int(clicks)+1)
 
             if token in row['name'].lower().split():
