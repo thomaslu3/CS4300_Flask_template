@@ -15,22 +15,20 @@ def search():
     omits = request.args.get('omit')
     upvote = request.args.get('upvote')
     downvote = request.args.get('downvote')
-    print("Upvote:", upvote, " Downvote:", downvote)
+    updated_query = request.args.get('updated_query')
     if not query:
         data = []
         updated_query = "EMPTY"
     else:
-        print("query:", query)
         if upvote:
             upvote_recipe(upvote)
         elif downvote:
             downvote_recipe(downvote)
-
-        if top_k(query, omits, 100) == "No results found":
+        top_k_output = top_k(query, omits, 12)
+        if top_k_output == "No results found":
             data = "EMPTY"
             updated_query = "EMPTY"
         else:
-            top_k_output = top_k(query, omits, 12)
             data = top_k_output[1]
             if top_k_output[0] != []:
                 updated_query = top_k_output[0]

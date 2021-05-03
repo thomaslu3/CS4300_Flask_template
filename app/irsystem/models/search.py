@@ -27,14 +27,19 @@ def downvote_recipe(recipe_id):
 def top_k(query, omits, k):
     final_data = []
     with open('data_with_num.csv', newline='') as csvfile:
-        data_dict = csv.DictReader(csvfile)
+        data_dict = list(csv.DictReader(csvfile))
         rows = []
-        for row in find_closest_matches(data_dict, query, omits):
+        closest_matches = find_closest_matches(data_dict, query, omits)
+        for row in closest_matches:
             rows.append(row)
             final_data.append(format_row(row))
         if len(final_data) > 0:
             rocchio_query = rocchio_algorithm(query, rows)
-            return [rocchio_query, final_data[:k]]
+            new_data = []
+            print("rocchio query", rocchio_query)
+            for row in find_closest_matches(data_dict, rocchio_query, omits):
+                new_data.append(format_row(row))
+            return [rocchio_query, new_data[:k]]
         else:
             return "No results found"
 
@@ -60,9 +65,13 @@ def rocchio_algorithm(query, rows):
     irrelevant_vectors = []
     for row in rows:
         if int(row['likes']) > 0:
-            relevant_vectors += [rocchio_vectorize_input(vocab, row["name"])]
+            print("like:", row['name'])
+            relevant_vectors += [
+                rocchio_vectorize_input(vocab, row["name"], 1)]
         elif int(row['likes']) < 0:
-            irrelevant_vectors += [rocchio_vectorize_input(vocab, row["name"])]
+            print("dislike:", row['name'])
+            irrelevant_vectors += [
+                rocchio_vectorize_input(vocab, row["name"], 1)]
         else:
             # don't do anything when likes = 0
             pass
@@ -74,9 +83,9 @@ def rocchio_algorithm(query, rows):
         avg_irrel = rocchio_average_many_vectors(irrelevant_vectors)
     else:
         avg_irrel = 0
-    vectorized_query = rocchio_vectorize_input(vocab, query)
-    alpha = .5
-    beta = 1.1 - alpha
+    vectorized_query = rocchio_vectorize_input(vocab, query, 6)
+    alpha = 3
+    beta = alpha
     if (type(avg_rel) == list and type(avg_irrel) == list):
         new_query_vector = np.array(
             vectorized_query) + alpha*np.array(avg_rel) - beta*np.array(avg_irrel)
@@ -95,7 +104,7 @@ def rocchio_algorithm(query, rows):
             new_query_vector[i] = 0
         elif new_query_vector[i] > 0:
             new_query_list += [reverse_dictionary[i]
-                               for j in range(int(new_query_vector[i] + 0.5))]
+                               for j in range(int(new_query_vector[i]))]
     new_query = " ".join(new_query_list)
 
     return new_query
@@ -135,11 +144,11 @@ def rocchio_vocabulary(query, rows):
 # use this function to vectorize an input
 
 
-def rocchio_vectorize_input(word_number_dict, row):
+def rocchio_vectorize_input(word_number_dict, row, factor):
     input_vector = [0 for i in range(len(word_number_dict))]
     row = row.lower()
     for word in row.split():
-        input_vector[word_number_dict[word]] += 1
+        input_vector[word_number_dict[word]] += 1*factor
     return input_vector
 
 # use this function to average many vectors
@@ -161,7 +170,8 @@ def find_closest_matches(data_dict, query, omits):
     # items the user wants to omit, separated by commas
     if omits and omits != '':
         omit = omits.lower()
-        tokenized_o = [x.strip() for x in omit.split(',')]
+        # Peter: changed omit to split on spaces instead of comma
+        tokenized_o = [x.strip() for x in omit.split(' ')]
     else:
         tokenized_o = []
 

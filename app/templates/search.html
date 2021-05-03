@@ -21,17 +21,20 @@
                 INSPIRATIONS
                 <input id="input" type="text" name="search" class="form-control" value="{{query}}" autocomplete="off">
 
-                OMISSIONS, comma separated
+                OMISSIONS
+                {% if omits and omits != "EMPTY" %}
+                <input id="input" type="text" name="omit" class="form-control" value="{{omits}}" autocomplete="off">
+                {% else %}
                 <input id="input" type="text" name="omit" class="form-control" placeholder="gluten, walnuts, sugar..."
                     autocomplete="off">
-
+                {% endif %}
                 {% else %}
 
                 INSPIRATIONS
                 <input id="input" type="text" name="search" class="form-control"
                     placeholder="banana bread, multigrain sourdough, naan..." autocomplete="off">
 
-                OMISSIONS, comma separated
+                OMISSIONS
                 <input id="input" type="text" name="omit" class="form-control" placeholder="gluten, walnuts, sugar..."
                     autocomplete="off">
                 {% endif %}
@@ -47,12 +50,13 @@
         <div class="resultsContainer">
             {% if data and data != "EMPTY" %}
             <div class="queryText">
-                You looked for: {{query}} <br>
+                <!-- You looked for: {{query}} <br>
                 {% if omits and omits != EMPTY %}
                 You've omitted: {{omits}} <br>
-                {% endif %}
+                {% endif %} -->
                 {% if updated_query and updated_query != EMPTY %}
-                Better query: {{updated_query}}
+                Up/downvote recipes to improve your results!
+                <!-- Better query: {{updated_query}} -->
                 {% endif %}
             </div>
 
