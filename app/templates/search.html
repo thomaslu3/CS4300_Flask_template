@@ -17,11 +17,9 @@
                 <!-- <div class="form-group"> -->
 
                 {% if data and data != "EMPTY" %}
-
-                INSPIRATIONS
+                <p class="searchPrompt"><strong> Inspirations</strong></p>
                 <input id="input" type="text" name="search" class="form-control" value="{{query}}" autocomplete="off">
-
-                OMISSIONS
+                <p class="searchPrompt"><strong> Omissions</strong></p>
                 {% if omits and omits != "EMPTY" %}
                 <input id="input" type="text" name="omit" class="form-control" value="{{omits}}" autocomplete="off">
                 {% else %}
@@ -30,11 +28,11 @@
                 {% endif %}
                 {% else %}
 
-                INSPIRATIONS
+                <p class="searchPrompt"><strong> Inspirations</strong></p>
                 <input id="input" type="text" name="search" class="form-control"
                     placeholder="banana bread, multigrain sourdough, naan..." autocomplete="off">
 
-                OMISSIONS
+                <p class="searchPrompt"><strong> Omissions</strong></p>
                 <input id="input" type="text" name="omit" class="form-control" placeholder="gluten, walnuts, sugar..."
                     autocomplete="off">
                 {% endif %}
@@ -55,7 +53,7 @@
                 You've omitted: {{omits}} <br>
                 {% endif %} -->
                 {% if updated_query and updated_query != EMPTY %}
-                Up/downvote recipes to improve your results!
+                Up/Downvote Recipes to Improve Your Results!
                 <!-- Better query: {{updated_query}} -->
                 {% endif %}
             </div>
